@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: snapurl-backend
+    env: node
+    rootDir: .
+    buildCommand: cd server && npm install
+    startCommand: cd server && node index.js
+
+  - type: web
+    name: snapurl-frontend
+    env: node
+    rootDir: .
+    buildCommand: cd client && npm install && npm run build
+    startCommand: cd client && npx serve dist
