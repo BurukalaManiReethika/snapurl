@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import axios from 'axios'
 
 const API = import.meta.env.VITE_API_URL || 'http://localhost:5000/api'
@@ -8,6 +8,11 @@ export default function ShortenerForm({ onShorten }) {
   const [result, setResult] = useState(null)
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
+
+  const charsSaved = useMemo(() => {
+    if (!result?.originalUrl || !result?.shortUrl) return 0
+    return Math.max(result.originalUrl.length - result.shortUrl.length, 0)
+  }, [result])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -50,6 +55,9 @@ export default function ShortenerForm({ onShorten }) {
           <button onClick={() => navigator.clipboard.writeText(result.shortUrl)}>
             Copy
           </button>
+          <p className="savings">
+            Saved <strong>{charsSaved}</strong> chars ({result.originalUrl.length} → {result.shortUrl.length})
+          </p>
         </div>
       )}
     </div>
