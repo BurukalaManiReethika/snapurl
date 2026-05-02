@@ -3,7 +3,7 @@ import axios from 'axios'
 import { QRCodeCanvas } from 'qrcode.react'
 import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 
-const API = import.meta.env.VITE_API_URL || 'http://localhost:5000/api'
+const API = import.meta.env.VITE_API_URL || '/api'
 
 export default function Dashboard() {
   const [urls, setUrls] = useState([])
