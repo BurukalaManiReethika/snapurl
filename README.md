@@ -163,7 +163,22 @@ curl -X POST http://localhost:5000/api/shorten \
 
 ## ☁️ Deployment
 
-This project is deployed on **Railway**. See the [Deploy Guide](#) in the wiki for step-by-step instructions.
+This repository includes a `render.yaml` blueprint for deploying both services on **Render**.
+
+1. Push this repository to GitHub.
+2. In Render, choose **New +** → **Blueprint** and select your repo.
+3. Render will create both `snapurl-backend` and `snapurl-frontend` services from `render.yaml`.
+4. Set backend environment variables:
+   - `MONGO_URI` = your MongoDB Atlas connection string
+   - `BASE_URL` = your backend public URL (for example, `https://snapurl-backend.onrender.com`)
+   - `PORT` is optional (Render provides one automatically)
+5. Set frontend environment variable:
+   - `VITE_API_URL` = `https://<your-backend-domain>/api`
+6. Redeploy both services.
+
+After deploy:
+- Frontend: `https://<your-frontend-domain>`
+- API health: `https://<your-backend-domain>/api/health`
 
 ---
 
