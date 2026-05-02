@@ -1,6 +1,7 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import axios from 'axios'
 import { QRCodeCanvas } from 'qrcode.react'
+import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 
 const API = import.meta.env.VITE_API_URL || 'http://localhost:5000/api'
 
@@ -33,9 +34,32 @@ export default function Dashboard() {
 
   const closeQrModal = () => setSelectedUrl('')
 
+  const chartData = useMemo(() => (
+    [...urls]
+      .sort((a, b) => b.clicks - a.clicks)
+      .slice(0, 5)
+      .map(({ shortCode, clicks }) => ({ shortCode, clicks }))
+  ), [urls])
+
   return (
     <div className="card">
       <h2>Your Links</h2>
+      {chartData.length > 0 && (
+        <section className="chart-section" aria-label="Link Performance">
+          <h3 className="chart-title">Link Performance</h3>
+          <div className="chart-container">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={chartData} margin={{ top: 8, right: 10, left: -16, bottom: 8 }}>
+                <CartesianGrid strokeDasharray="3 3" vertical={false} />
+                <XAxis dataKey="shortCode" tick={{ fontSize: 12 }} interval={0} />
+                <YAxis allowDecimals={false} tick={{ fontSize: 12 }} />
+                <Tooltip />
+                <Bar dataKey="clicks" fill="#2563eb" radius={[6, 6, 0, 0]} />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+        </section>
+      )}
       {urls.length === 0 && (
         <p className="muted">No links yet. Shorten one above!</p>
       )}
