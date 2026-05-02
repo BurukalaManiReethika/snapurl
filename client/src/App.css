@@ -195,3 +195,24 @@ th { color: #888; font-weight: 500; }
   justify-content: center;
   margin-top: 0.5rem;
 }
+
+.chart-section {
+  margin-bottom: 1.25rem;
+}
+
+.chart-title {
+  margin-bottom: 0.75rem;
+  color: #1f2937;
+  font-size: 1rem;
+}
+
+.chart-container {
+  width: 100%;
+  height: 280px;
+}
+
+@media (max-width: 640px) {
+  .chart-container {
+    height: 220px;
+  }
+}
