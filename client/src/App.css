@@ -138,3 +138,60 @@ th { color: #888; font-weight: 500; }
 
 .del:hover { background: #fca5a5; }
 .muted { color: #aaa; font-size: 14px; }
+
+.actions-cell {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.qr {
+  background: #dbeafe;
+  color: #1d4ed8;
+  padding: 4px 12px;
+  font-size: 13px;
+}
+
+.qr:hover {
+  background: #bfdbfe;
+}
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(17, 24, 39, 0.45);
+  display: grid;
+  place-items: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.modal {
+  width: min(420px, 100%);
+  background: white;
+  border-radius: 12px;
+  padding: 1.25rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
+  text-align: center;
+}
+
+.modal h3 {
+  margin-bottom: 0.75rem;
+  color: #1f2937;
+}
+
+.qr-wrap {
+  background: #f8fafc;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 1rem;
+  margin: 1rem auto;
+  width: fit-content;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
